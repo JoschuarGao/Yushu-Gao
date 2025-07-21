@@ -1,0 +1,12 @@
+#Gitlab CI YAML for building latex
+image: gitlab.mrt.kit.edu:21443/mrt/misc/mrt_build/latex:latest
+
+compile_pdf:
+  script:
+    # add latex-path to path in order to find xindy
+    - export PATH=$PATH:$(which latex)
+    # compile pdf
+    - latexmk -pdf
+  artifacts:
+    paths:
+      - thesis.pdf
